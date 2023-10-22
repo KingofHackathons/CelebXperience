@@ -1,13 +1,13 @@
 # Introduction
 
-CelebXperience is a one-stop shop for limited and exclusive techniques, strategies, and experiences with the best in the world.
+xLux is a one-stop shop for limited and exclusive techniques, strategies, and experiences with the best in the world.
 
 ## Reset Wallets
 
 All API requests interact with wallets that are currently stored in memory. They are automatically generated as needed throughout the demo. However, if there's any type of glitch/bug, you can force reset the wallets and it might fix your issues.
 
 ```http
-POST https://CelebXperience.herokuapp.com/resetwallets
+POST https://xlux.herokuapp.com/resetwallets
 ```
 
 | Parameter | Type | Description |
@@ -27,7 +27,7 @@ POST https://CelebXperience.herokuapp.com/resetwallets
 This endpoint gets the current address for the NFT issuer, distributor, and buyer for visual purposes. You will only use this API if you are interested in showing wallet addresses.
 
 ```http
-POST https://CelebXperience.herokuapp.com/getwallets
+POST https://xlux.herokuapp.com/getwallets
 ```
 
 | Parameter | Type | Description |
@@ -42,10 +42,10 @@ POST https://CelebXperience.herokuapp.com/getwallets
 
 ## Get All NFTs that are for sale
 
-This endpoint gets all NFTs that are for sale on CelebXperience. It will only return the NFTs that were minted through our platform.
+This endpoint gets all NFTs that are for sale on xLux. It will only return the NFTs that were minted through our platform.
 
 ```http
-POST https://CelebXperience.herokuapp.com/nftsforsale
+POST https://xlux.herokuapp.com/nftsforsale
 ```
 
 | Parameter | Type | Description |
@@ -83,7 +83,7 @@ WARNING: This endpoint was super slow and it was timing out on Heroku. Therefore
 This endpoint will first mint the NFT using the built-in issuer and distribution accounts and then it will open a 'selling' position on the XRP Ledger. The transaction will be added to the database so it can be used on the endpoint that lists nfts for sale.
 
 ```http
-POST https://CelebXperience.herokuapp.com/mint
+POST https://xlux.herokuapp.com/mint
 ```
 
 Form-Data
@@ -92,7 +92,7 @@ Form-Data
 | `name` | `string` | `NFT name` |
 | `description` | `string` | `NFT description` |
 | `sellprice` | `string` | `Price in XRP for 1 token. If you sell more than 1 tokens, we calculate that automatically.` |
-| `url` | `string` | `url of the CelebXperience NFT` |
+| `url` | `string` | `url of the xLux NFT` |
 
 
 ## Response
@@ -107,14 +107,14 @@ hot_wallet.classic_address, 'saleTransaction':final_sale_on_ledger}
 ```
 
 
-## Buy an NFT that was listed on CelebXperience
+## Buy an NFT that was listed on xLux
 
 This endpoint is the most complicated because it depends on the data that you request from `/nftsforsale`. It will use the built-in buyer wallet to fulfill the order from someone selling the NFT.
 
 My recommendation is that you first get all data from `/nftsforsale` and then you will send the data for 1 specific NFT that someone is trying to buy as shown below:
 
 ```http
-POST https://CelebXperience.herokuapp.com/buy
+POST https://xlux.herokuapp.com/buy
 ```
 
 | Parameter | Type | Description |
