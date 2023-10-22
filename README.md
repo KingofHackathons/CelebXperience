@@ -44,7 +44,7 @@
 <br>
 
 ```
-1. git clone https://github.com/Nate8888/CelebXperienceopen.git
+1. git clone https://github.com/KingofHackathons/CelebXperience.git
 ```
 
 #### Now go inside the project folder `CelebXperienceopen` and run the following command to install the dependencies (python 3+ required)
