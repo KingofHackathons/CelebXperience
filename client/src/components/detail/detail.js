@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import { navigate } from '@reach/router'
 import Loading from '../loading'
 
@@ -23,6 +24,36 @@ class Detail extends React.Component {
 
     buy() {
         this.setState({ loading: true })
+
+        // Issuing mint transaction
+        const apiURL = "https://xlux.herokuapp.com/mint"
+        let bodyFormData = new FormData();
+        bodyFormData.append("token_id", this.props.location.state.id);
+
+        axios({
+            method: "post",
+            url: apiURL,
+            data: bodyFormData,
+            headers: { "Content-Type": "multipart/form-data" },
+        })
+        .then(response => {
+            // handle success
+            console.log(response);
+            setTimeout(() => {
+                // To prevent multiple subsequent requests to our API.
+                this.setState({ loading: false })
+            }, 2000)
+        })
+        .catch(error => {
+            // handle error
+            console.log(error);
+            setTimeout(() => {
+                // To prevent multiple subsequent requests to our API.
+                this.setState({ loading: false })
+            }, 2000)
+        });
+
+        // Preventing convoluted requests.
         setTimeout(() => {
             navigate("/")
         }, 2500)
@@ -43,7 +74,7 @@ class Detail extends React.Component {
                     <div className="right-detail">
                         <div className="name">{item.name}</div>
                         <div className="d">{item.description}</div>
-                        <div className="price">XRP {item.price}</div>
+                        <div className="price">{item.price} XRP</div>
                         <div className="available">{item.available} Available</div>
                         <div className="owner">
                             <img src={NFTSample} alt="NFT Owner" />
